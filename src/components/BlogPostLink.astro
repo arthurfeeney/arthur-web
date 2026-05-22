@@ -1,0 +1,26 @@
+---
+const {linkText} = Astro.props;
+const {postId} = Astro.props;
+---
+
+<li>
+    <a href={postId}>
+        <span class="title">{linkText}</span>
+    </a>
+</li>
+
+<style>
+li a {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.1rem;
+  color: #030209;
+  text-decoration: none;
+  padding: 16px 0;
+}
+
+li a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #3C3489;
+}
+</style>

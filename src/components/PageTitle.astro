@@ -1,0 +1,30 @@
+---
+const {pageTitle} = Astro.props;
+---
+
+<h1>
+    <em>{pageTitle}</em>
+</h1>
+
+<style>
+    h1 {
+        font-family: 'Instrument Serif', serif;
+        font-size: 3rem;
+        line-height: 1.1;
+        font-weight: 400;
+        color: #6e2365;
+    }
+
+    h1 em {
+        font-style: italic;
+        opacity: 1.0;
+    }
+
+    .meta {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.05em;
+        color: #aaa;
+        margin-top: 0.75rem;
+    }
+</style>

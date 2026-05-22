@@ -1,0 +1,80 @@
+---
+import ThemeIcon from "./ThemeIcon.astro";
+
+const platform = "github";
+const username = "arthurfeeney";
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+    <div class="hdr-left">
+        <div class="hdr-name">Arthur <em>Feeney</em></div>
+        <div class="hdr-tag">// PhD Student, Developer</div>
+    </div>
+    <nav class="hdr-nav">
+        <a href="/" class={currentPath == "/" ? "active" : ""}>home</a>
+        <a href="/blog/" class={currentPath == "/blog" ? "active" : ""}>blog</a>
+        <a href="/research/" class={currentPath == "/research" ? "active" : ""}>research</a>
+    </nav>
+</header>
+
+<style>
+    div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header {
+        padding: 2.5rem 2rem;
+        border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .hdr-name {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2rem;
+    }
+    .hdr-name em {
+        font-style: italic;
+        opacity: 0.5;
+    }
+
+    .hdr-tag {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.72rem;
+        opacity: 0.4;
+        letter-spacing: 0.06em;
+        margin-top: 6px;
+    }
+    .hdr-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav { display: flex; gap: 1.5rem; }
+    nav a {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        color: #555;
+        text-decoration: none;
+    }
+    nav a.active {
+        color: #000;
+        border-bottom: 1.5px solid #000;
+    }
+</style>
+
+<script>
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+</script>

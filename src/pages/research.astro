@@ -1,0 +1,24 @@
+---
+import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BlogPostLink from '../components/BlogPostLink.astro';
+const allPosts = await getCollection("research");
+---
+
+<BaseLayout pageTitle="Research">
+    <ul>
+        {allPosts.map((post: any) => <BlogPostLink linkText={post.data.title} postId=`/research_posts/${post.id}` />)}
+    </ul>
+</BaseLayout>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 16px;
+        margin: 0;
+        gap: 500px;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
