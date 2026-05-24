@@ -8,7 +8,11 @@ const allPosts = await getCollection("blog");
 
 <BaseLayout pageTitle="Blog">
     <ul>
-        {allPosts.map((post: any) => <BlogPostLink linkText={post.data.title} postId=`/posts/${post.id}` />)}
+        {allPosts.map((post: any) => <BlogPostLink 
+            linkText={post.data.title} 
+            postId=`/posts/${post.id}` 
+            pubDate={post.data.pubDate}/>)
+        }
     </ul>
 </BaseLayout>
 

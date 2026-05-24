@@ -1,18 +1,26 @@
 ---
 const {linkText} = Astro.props;
 const {postId} = Astro.props;
+const {pubDate} = Astro.props;
+const niceDate = pubDate.toLocaleDateString('en-US', {
+  "year": "numeric",
+  "month": "long",
+  "day": "numeric"
+
+}
+)
 ---
 
 <li>
     <a href={postId}>
-        <span class="title">{linkText}</span>
+        <span class="title">{linkText} - {niceDate}</span>
     </a>
 </li>
 
 <style>
 li a {
   font-family: 'Instrument Serif', serif;
-  font-size: 1.1rem;
+  font-size: 1.1rem;  
   color: #030209;
   text-decoration: none;
   padding: 16px 0;

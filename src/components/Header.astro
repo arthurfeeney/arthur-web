@@ -1,5 +1,7 @@
 ---
 import ThemeIcon from "./ThemeIcon.astro";
+import { Image } from 'astro:assets';
+import boilingImage from "../assets/black_temp.gif"
 
 const platform = "github";
 const username = "arthurfeeney";
@@ -8,14 +10,19 @@ const currentPath = Astro.url.pathname;
 
 <header>
     <div class="hdr-left">
-        <div class="hdr-name">Arthur <em>Feeney</em></div>
+        <div class="hdr-name">
+            Arthur <em> Feeney</em>
+        </div>
         <div class="hdr-tag">// PhD Student, Developer</div>
     </div>
-    <nav class="hdr-nav">
-        <a href="/" class={currentPath == "/" ? "active" : ""}>home</a>
-        <a href="/blog/" class={currentPath == "/blog" ? "active" : ""}>blog</a>
-        <a href="/research/" class={currentPath == "/research" ? "active" : ""}>research</a>
-    </nav>
+    <div class="hdr-right">
+        <nav class="hdr-nav">
+            <a href="/" class={currentPath == "/" ? "active" : ""}>home</a>
+            <a href="/blog/" class={currentPath == "/blog" ? "active" : ""}>blog</a>
+            <a href="/research/" class={currentPath == "/research" ? "active" : ""}>research</a>
+        </nav>
+        <Image src={boilingImage} alt="boiling image" height="48" width="48"/>
+    </div>
 </header>
 
 <style>
@@ -51,6 +58,15 @@ const currentPath = Astro.url.pathname;
     .hdr-left {
         display: flex;
         flex-direction: column;
+    }
+
+    .hdr-right {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .hdr-right img {
+        margin-top: -8px; /* adjust to taste */
     }
 
     nav { display: flex; gap: 1.5rem; }

@@ -8,16 +8,20 @@ const allPosts = await getCollection("research");
 
 <BaseLayout pageTitle="Research">
     <ul>
-        {allPosts.map((post: any) => <BlogPostLink linkText={post.data.title} postId=`/research_posts/${post.id}` />)}
+        {allPosts.map((post: any) => <BlogPostLink 
+            linkText={post.data.title}
+            postId=`/research_posts/${post.id}` 
+            pubDate={post.data.pubDate}/>)
+        }
     </ul>
 </BaseLayout>
 
 <style>
     ul {
         list-style: none;
-        padding: 16px;
+        padding: 0px;
         margin: 0;
-        gap: 500px;
+        gap: 16px;
         display: flex;
         flex-direction: column;
     }
