@@ -1,10 +1,17 @@
 ---
 const { frontmatter } = Astro.props;
-import '../styles/global.css';
 import BaseLayout from './BaseLayout.astro';
+import '../styles/post.css';
+import { createSlotValueFromString } from 'astro/runtime/server/render/slot.js';
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-    <p>{frontmatter.author}, {frontmatter.pubDate.toString().slice(0,10)}</p>
-    <slot />
+<BaseLayout>
+    <article class="prose">
+        <h1 class="prose">{frontmatter.title}</h1>
+        {frontmatter.subtitle && <p class="subtitle">{frontmatter.subtitle}</p>}
+        <div>
+            <slot />
+        </div>
+    </article>
+
 </BaseLayout>

@@ -1,0 +1,146 @@
+/* blog.css — targets plain markdown-generated HTML */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital@0;1&family=DM+Sans:wght@300;400&display=swap');
+
+.prose {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0rem 0rem 0rem;
+  font-family: 'Lora', Georgia, serif;
+  color: inherit;
+}
+
+/* Title */
+.prose h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin-bottom: 0rem;
+}
+
+/* Headings */
+.prose h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+}
+
+.prose h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 2rem 0 0.75rem;
+}
+
+/* Body */
+.prose p {
+  font-size: 17px;
+  line-height: 1.82;
+  margin-bottom: 1.5rem;
+  color: #111111;
+}
+
+/* Subtitle / deck */
+.prose .subtitle {
+    font-size: 18px;
+    font-style: italic;
+    color: #500e3c;
+    line-height: 1.55;
+}
+
+/* Pull quote — markdown's > blockquote */
+.prose blockquote {
+  border-left: 3px solid #7F77DD;
+  margin: 2.2rem 0 2.2rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.prose blockquote p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Links */
+.prose a {
+  color: #534AB7;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.prose a:hover { color: #3C3489; }
+
+/* Code */
+.prose code {
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 0.88em;
+  background: #EEEDFE;
+  color: #3C3489;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.prose pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 2rem 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Lists */
+.prose ul, .prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose li {
+  font-size: 17px;
+  line-height: 1.75;
+  margin-bottom: 0.4rem;
+}
+
+/* Horizontal rule */
+.prose hr {
+  border: none;
+  width: 40px;
+  height: 2px;
+  background: #7F77DD;
+  margin: 2.5rem 0;
+}
+
+/* Images */
+.prose img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 2rem 0 0.75rem;
+}
+
+.prose img + em {
+  display: block;
+  font-size: 13px;
+  color: #6c1950;
+  text-align: center;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+  font-style: normal;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+}
