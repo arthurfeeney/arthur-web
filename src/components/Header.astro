@@ -11,7 +11,7 @@ const currentPath = Astro.url.pathname;
 <header>
     <div class="hdr-left">
         <div class="hdr-name">
-            Arthur <em> Feeney</em>
+            <a href="/">Arthur <em> Feeney</em></a>
         </div>
     </div>
     <div class="hdr-right">
@@ -42,6 +42,10 @@ const currentPath = Astro.url.pathname;
         display: block; /* not flex, so the two words aren't spread apart */
         font-family: 'Instrument Serif', serif;
         font-size: 2rem;
+    }
+    .hdr-name a {
+        color: inherit;
+        text-decoration: none;
     }
     .hdr-name em {
         font-style: normal;
