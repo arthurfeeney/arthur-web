@@ -4,25 +4,94 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from "astro:content";
 import BlogPostLink from '../components/BlogPostLink.astro';
 const allPosts = await getCollection("blog");
+
+// Group posts by category. Posts within a category read oldest-first (like a series);
+// categories are ordered by their most recent post. Uncategorized posts go last.
+const groups = new Map<string, typeof allPosts>();
+for (const post of allPosts) {
+    const category = post.data.category ?? "Other";
+    if (!groups.has(category)) groups.set(category, []);
+    groups.get(category)!.push(post);
+}
+for (const posts of groups.values()) {
+    posts.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+}
+const latest = (posts: typeof allPosts) => posts[posts.length - 1].data.pubDate.valueOf();
+const categories = [...groups.entries()].sort(([a, postsA], [b, postsB]) => {
+    if (a === "Other") return 1;
+    if (b === "Other") return -1;
+    return latest(postsB) - latest(postsA);
+});
 ---
 
 <BaseLayout pageTitle="Blog">
-    <ul>
-        {allPosts.map((post: any) => <BlogPostLink 
-            linkText={post.data.title} 
-            postId=`/posts/${post.id}` 
-            pubDate={post.data.pubDate}/>)
-        }
-    </ul>
+    {categories.map(([category, posts]) => (
+        <details open>
+            <summary><h2>{category}</h2></summary>
+            <ul>
+                {posts.map((post) => <BlogPostLink
+                    linkText={post.data.title}
+                    postId=`/posts/${post.id}`
+                    pubDate={post.data.pubDate}/>)
+                }
+            </ul>
+        </details>
+    ))}
 </BaseLayout>
 
 <style>
-    ul {
-        list-style: none;
-        padding: 0px;
-        margin: 0;
-        gap: 16px;
+    details {
+        margin: 1.5rem 0;
+    }
+
+    /* Category heading doubles as the collapse toggle, with a chevron that rotates */
+    summary {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        list-style: none;
+        margin-bottom: 0.25rem;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::before {
+        content: "";
+        width: 0.4rem;
+        height: 0.4rem;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(-45deg);
+        transition: transform 0.15s ease;
+        opacity: 0.6;
+    }
+
+    details[open] > summary::before {
+        transform: rotate(45deg);
+    }
+
+    h2 {
+        font-family: 'Instrument Serif', Georgia, serif;
+        font-weight: 400;
+        font-size: 1.15rem;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin: 0;
+    }
+
+    ul :global(li) {
+        margin-bottom: 0.5rem;
+    }
+
+    ul :global(li::marker) {
+        font-size: 0.8em;
     }
 </style>

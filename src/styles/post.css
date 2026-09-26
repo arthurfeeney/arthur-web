@@ -1,36 +1,37 @@
 /* blog.css — targets plain markdown-generated HTML */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital@0;1&family=DM+Sans:wght@300;400&display=swap');
 
 .prose {
   max-width: 900px;
   margin: 0 auto;
   padding: 0rem 0rem 0rem;
-  font-family: 'Lora', Georgia, serif;
+  font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
   color: inherit;
 }
 
 /* Title */
 .prose h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 5vw, 42px);
-  font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
-  margin-bottom: 0rem;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(38px, 7vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: balance;
+  margin: 2rem 0 1.5rem;
 }
 
 /* Headings */
 .prose h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: inherit;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 2.5rem 0 1rem;
 }
 
 .prose h3 {
-  font-family: 'DM Sans', sans-serif;
+  font-family: inherit;
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 2rem 0 0.75rem;
@@ -40,14 +41,17 @@
 .prose p {
   font-size: 17px;
   line-height: 1.82;
-  margin-bottom: 1.5rem;
+  margin: 0 0 0.6rem;
   color: #111111;
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* Subtitle / deck */
 .prose .subtitle {
     font-size: 18px;
     font-style: italic;
+    text-align: center;
     color: #500e3c;
     line-height: 1.55;
 }
@@ -60,8 +64,8 @@
 }
 
 .prose blockquote p {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-family: inherit;
+  font-size: 19px;
   font-style: italic;
   line-height: 1.6;
   margin: 0;
@@ -79,7 +83,7 @@
 
 /* Code */
 .prose code {
-  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-family: 'Atkinson Hyperlegible Mono', 'Fira Code', monospace;
   font-size: 0.88em;
   background: #EEEDFE;
   color: #3C3489;
@@ -107,14 +111,44 @@
 
 /* Lists */
 .prose ul, .prose ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding-left: 2.75rem;
+  margin: 0 0 0.6rem;
 }
 
 .prose li {
   font-size: 17px;
   line-height: 1.75;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Bullets: small dots in the text color, hollow for nested lists */
+.prose ul {
+  list-style: none;
+}
+
+.prose ul > li {
+  position: relative;
+}
+
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.15rem;
+  top: calc(0.875em - 2px); /* centered on the first line */
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.prose ul ul > li::before {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+
+/* Numbers: fixed-width digits so items line up */
+.prose ol > li::marker {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Horizontal rule */
@@ -141,6 +175,13 @@
   margin-top: -0.5rem;
   margin-bottom: 2rem;
   font-style: normal;
-  font-family: 'DM Sans', sans-serif;
+  font-family: inherit;
   letter-spacing: 0.02em;
+}
+
+/* Math — display equations scroll instead of overflowing on narrow screens */
+.prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
 }
