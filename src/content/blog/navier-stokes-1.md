@@ -12,7 +12,7 @@ category: 'Navier-Stokes'
 
 Since OpenAI announced they had a solution to the Millenium problem, I thought it would be fun
 to "learn-in-public" a bit more about the (incompressible) Navier-Stokes equations. This is
-hopefully a fun intro and going to be really informal!
+going to be really informal!
 
 $$
 \begin{aligned}
@@ -76,6 +76,8 @@ It's possible to reduce the right-hand side to something nicer looking, but the 
 can be computed using only spatial derivatives of $\mathbf{u}$ at the time $t$. I.e., at a given timestep, you can use the velocity to compute the pressure that
 will make the system remain incompressible. $\nabla p$ is basically chosen to cancel out any divergence that would be added by the convective term and
 external forces!
+- $p$ may not be "physically" meaningful. Since we only need $\nabla p$, you can basically use any shift of the pressure, since
+$\nabla (p + c) = $\nabla p, where $c \in R$ is just some constant that gets added on.
 
 
 ## Millenium Prize Problem Description
